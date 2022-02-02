@@ -1,35 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_signin_firebase/signIn.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: FirebaseOptions(
-          apiKey: "AIzaSyBcsLc8cHnJuBwkKa1EZj1k-D48t_mF5Vc",
-          appId: "1:717854214894:android:fdca502bb908415f53c1ff",
-          messagingSenderId: "717854214894",
-          projectId: "project-signin-firebase"));
-  runApp(MaterialApp(
-    home: ClassSignIn(),
-    debugShowCheckedModeBanner: false,
-    routes: {
-      '/welcome': (context) => Newpage(),
-    },
-  ));
-}
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+class ClassSignIn extends StatefulWidget {
+  const ClassSignIn({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _ClassSignInState createState() => _ClassSignInState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _ClassSignInState extends State<ClassSignIn> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
@@ -106,7 +89,7 @@ class _MyAppState extends State<MyApp> {
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               Text(
-                'Sign up',
+                'Sign in',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
@@ -141,7 +124,7 @@ class _MyAppState extends State<MyApp> {
               InkWell(
                 onTap: () async {
                   try {
-                    await auth.createUserWithEmailAndPassword(
+                    await auth.signInWithEmailAndPassword(
                       email: _emailController.text,
                       password: _passController.text,
                     );
@@ -172,24 +155,6 @@ class _MyAppState extends State<MyApp> {
                 ),
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Newpage extends StatelessWidget {
-  const Newpage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Welcome',
-          style: TextStyle(
-            fontSize: 38,
           ),
         ),
       ),
