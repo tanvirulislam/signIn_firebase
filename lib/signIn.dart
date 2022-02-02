@@ -153,6 +153,35 @@ class _ClassSignInState extends State<ClassSignIn> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  Text(
+                    'If you r already have an account?',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  InkWell(
+                    onTap: () {
+                       Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

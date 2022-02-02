@@ -14,10 +14,11 @@ void main() async {
           messagingSenderId: "717854214894",
           projectId: "project-signin-firebase"));
   runApp(MaterialApp(
-    home: ClassSignIn(),
+    home: MyApp(),
     debugShowCheckedModeBanner: false,
     routes: {
       '/welcome': (context) => Newpage(),
+      '/signin': (context) => ClassSignIn(),
     },
   ));
 }
@@ -147,8 +148,8 @@ class _MyAppState extends State<MyApp> {
                     );
                     Navigator.pushNamed(context, '/welcome');
                   } catch (e) {
-                    // ignore: avoid_print
-                    print(e);
+                    final snackBar = SnackBar(content: Text(e.toString()));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
                 child: Container(
@@ -170,6 +171,35 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  Text(
+                    'If you r already have an account?',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  InkWell(
+                    onTap: () {
+                       Navigator.pushNamed(context, '/signin');
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
